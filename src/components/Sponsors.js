@@ -1,71 +1,38 @@
 import React from 'react';
-import OwlCarousel from 'react-owl-carousel3'; 
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
+import Carousel from './Caurousel';
 import partner1 from '../assets/images/partner1.png';
 import partner2 from '../assets/images/partner2.png';
 import partner3 from '../assets/images/partner3.png';
 import partner4 from '../assets/images/partner4.png';
 import partner5 from '../assets/images/partner5.png';
-import partner6 from '../assets/images/partner6.png'; 
+import partner6 from '../assets/images/partner6.png';
 
+const sponsors = [partner1, partner2, partner3, partner4, partner5, partner6];
 
 function Sponsors() {
-    const options = {
-        loop: true,
-        // nav: true,
-        responsive: {
-            0: { items: 1 },
-            600: { items: 2 },
-            1000: { items: 3 }
-        },
-        item:5,
-        autoplay:true,
-        autoplayTimeout:1000,
-        autoplayHoverPause:true,
-        autowidth:false,
-        dots:false,
-        center:false,
-    
-        
-    }
-    const sponsors=[
-        {
-            img:partner1
-        },
-        {
-            img:partner2
-        },
-        {
-            img:partner3
-        },
-        {
-            img:partner4
-        },
-        {
-            img:partner5
-        },
-        {
-            img:partner6
-        }
-    ]
-  return (
-    <div className='partner-main'>
-        <OwlCarousel className="owl-theme" {...options}>
-            {
-               sponsors.map((sponsor,index)=>{
-                return(<div key={index} className='partners'>
-                    <img src={sponsor.img} alt="" className='img-partner' style={{width:'100px'}}/>
-
-                </div>)
-               })
-            }
-
-        </OwlCarousel>
-
-
-    </div>
-  )
+	return (
+		<section className="partner-main">
+			<Carousel
+				label="Our partners"
+				perView={{ base: 2, sm: 3, md: 4, lg: 5 }}
+				interval={2500}
+				dots={false}
+				gap={32}>
+				{sponsors.map((img, index) => (
+					<div
+						key={index}
+						className="partners">
+						<img
+							src={img}
+							alt={`Partner ${index + 1}`}
+							className="img-partner"
+							loading="lazy"
+						/>
+					</div>
+				))}
+			</Carousel>
+		</section>
+	);
 }
 
-export default Sponsors
+export default Sponsors;
